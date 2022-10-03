@@ -1,11 +1,28 @@
+import { userService } from './../services/userService';
 import { Request, Response } from "express";
 
 
 
 export async function loginUser(req: Request, res: Response) {
-    res.sendStatus(200);
+    const { email, password } = req.body;
+    
+    const token = await userService.login({email, password});
+
+    res.status(200).send(token);
 }
 
 export async function registerUser(req: Request, res: Response) {
-    res.sendStatus(200);
+    const {
+        email,
+        password,
+        confirmPassword
+    } = req.body;
+
+    const createdUser = await userService.register({
+        email,
+        password,
+        confirmPassword
+    })
+
+    res.status(201).send(createdUser);
 }
