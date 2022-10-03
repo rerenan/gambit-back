@@ -13,12 +13,14 @@ export async function loginUser(req: Request, res: Response) {
 
 export async function registerUser(req: Request, res: Response) {
     const {
+        username,
         email,
         password,
         confirmPassword
     } = req.body;
 
     const createdUser = await userService.register({
+        username,
         email,
         password,
         confirmPassword
