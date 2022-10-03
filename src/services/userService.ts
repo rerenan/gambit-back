@@ -1,4 +1,4 @@
-import { UserSignUpData, UserInsertData } from './../types/User';
+import { UserSignUpData, UserLoginData } from './../types/User';
 
 
 async function register(userData:UserSignUpData) {
@@ -13,7 +13,7 @@ async function register(userData:UserSignUpData) {
     return;
 }
 
-async function login(userData:UserInsertData) {
+async function login(userData:UserLoginData) {
     const {
         email,
         password,
