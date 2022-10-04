@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 
 import { userRepository } from "../repositories/userRepository";
+import generateUserToken from "../utils/schemas/generateToken";
 import { UserSignUpData, UserLoginData } from "./../types/User";
 
 async function register(userData:UserSignUpData) {
@@ -46,10 +47,15 @@ async function login(userData:UserLoginData) {
         password,
     } = userData;
 
-    //UseCases
-    //Call repository
-    //Return token
-    return;
+    const user = await userRepository.findByEmail(email);
+    if(!user) throw {type: "unauthorized", message: "Email or password incorrect"};
+
+    const validatePassword = bcrypt.compareSync(password, user.password);
+    if(!validatePassword) throw {type: "unauthorized", message: "Email or password incorrect"};
+
+    const token = generateUserToken(user.id);
+    
+    return token;
 }
 
 export const userService = {
