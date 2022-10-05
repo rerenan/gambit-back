@@ -23,9 +23,18 @@ async function findByEmail(email: string) {
 }
 
 async function findByUserName(username: string) {
-    const result = await prisma.user.findFirst({
+    const result = await prisma.user.findUnique({
         where: {
             username
+        }
+    });
+    return result;
+}
+
+async function findById(id: number) {
+    const result = await prisma.user.findUnique({
+        where: {
+            id
         }
     });
     return result;
@@ -34,5 +43,6 @@ async function findByUserName(username: string) {
 export const userRepository = {
     insert,
     findByEmail,
-    findByUserName
+    findByUserName,
+    findById
 }
