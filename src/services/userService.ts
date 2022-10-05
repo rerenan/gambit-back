@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 import { userRepository } from "../repositories/userRepository";
-import generateUserToken from "../utils/schemas/generateToken";
+import generateUserToken from "../utils/generateToken";
 import { UserSignUpData, UserLoginData } from "./../types/User";
 
 async function register(userData:UserSignUpData) {
