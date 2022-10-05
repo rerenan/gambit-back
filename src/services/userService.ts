@@ -1,3 +1,4 @@
+import { profileRepository } from './../repositories/profileRepository';
 import bcrypt from "bcrypt";
 
 import { userRepository } from "../repositories/userRepository";
@@ -38,6 +39,8 @@ async function register(userData:UserSignUpData) {
         password: passwordHash
     });
     
+    await profileRepository.insert(userCreated.id);
+
     return userCreated;
 }
 
