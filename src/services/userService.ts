@@ -55,7 +55,7 @@ async function login(userData:UserLoginData) {
 
     const token = generateUserToken(user.id);
     
-    return token;
+    return {token};
 }
 
 export const userService = {
