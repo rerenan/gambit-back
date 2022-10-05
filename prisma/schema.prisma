@@ -15,7 +15,8 @@ model User {
   username              String                    @unique
   email                 String                    @unique
   password              String
-  posts                 Post[]
+  profile               Profile[]
+  posts                 Post[]               
   createdAt             DateTime                  @default(now())
 
   @@map("users")
@@ -29,4 +30,16 @@ model Post {
   createdAt             DateTime                  @default(now())
 
   @@map("posts")
+}
+
+model Profile {
+  id                    Int                       @id @default(autoincrement())
+  userId                Int                       @unique
+  user                  User                      @relation(fields: [userId], references: [id])
+  profilePicture        String?
+  biography             String?                   @db.VarChar(250)
+  banner                String?
+  createdAt             DateTime                  @default(now())
+
+  @@map("profiles")
 }
