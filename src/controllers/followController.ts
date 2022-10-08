@@ -7,7 +7,7 @@ export async function followUser(req: Request, res: Response) {
     
     await followService.follow(followerId, Number(followedId))
     
-    res.sendStatus(200);
+    res.sendStatus(201);
 }
 
 export async function unfollowUser(req: Request, res: Response) {
@@ -16,5 +16,5 @@ export async function unfollowUser(req: Request, res: Response) {
     
     await followService.unfollow(unfollowerId, Number(unfollowedId))
     
-    res.sendStatus(200);
+    res.sendStatus(201);
 }

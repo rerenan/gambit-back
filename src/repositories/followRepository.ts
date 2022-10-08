@@ -18,8 +18,18 @@ async function remove(followerId: number, followedId: number) {
         }
     })
 }
-
+async function findByFollowerIdAndFollowedId(followerId: number, followedId: number) {
+    return prisma.follow.findUnique({
+        where:{
+            userIdFollowed_userIdFollower:{
+                userIdFollower: followerId,
+                userIdFollowed: followedId
+            }
+        }
+    })
+}
 export const followRepository = {
     insert,
-    remove
+    remove,
+    findByFollowerIdAndFollowedId
 }
