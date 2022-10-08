@@ -16,7 +16,9 @@ model User {
   email                 String                    @unique
   password              String
   profile               Profile[]
-  posts                 Post[]               
+  posts                 Post[]
+  followers             Follower[]                @relation("followers")
+  following             Follower[]                @relation("following")
   createdAt             DateTime                  @default(now())
 
   @@map("users")
@@ -42,4 +44,16 @@ model Profile {
   createdAt             DateTime                  @default(now())
 
   @@map("profiles")
+}
+
+model Follower {
+  id                    Int                       @id @default(autoincrement())
+  userIdFollowed        Int                       
+  userIdFollower        Int                         
+  userFollowed          User                      @relation(name: "following", fields: [userIdFollowed], references: [id])
+  userFollower          User                      @relation(name: "followers", fields: [userIdFollower], references: [id])
+  createdAt             DateTime                  @default(now())
+
+  @@map("followers")
+  @@unique([userIdFollowed, userIdFollower])
 }
