@@ -9,6 +9,10 @@ export async function getProfile(req: Request, res: Response) {
 }
 
 export async function updateProfile(req: Request, res: Response) {
-    
-    res.sendStatus(200);
+    const {id: postUserId} = req.params;
+    const {id: userId} = res.locals.user;
+    const updateProfileData = req.body;
+
+    const updatedProfile = await profileService.update(Number(postUserId), Number(userId), updateProfileData);
+    res.status(200).send(updatedProfile);
 }

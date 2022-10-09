@@ -1,7 +1,7 @@
 import prisma from "../config/database";
 import { ProfileUpdateData } from "../types/Profile";
 
-function insert(userId:number) {
+function insert(userId: number) {
     return prisma.profile.create({
         data:{
             userId
@@ -17,7 +17,7 @@ function getByUserId(userId: number){
     })
 }
 
-function update(updateData:ProfileUpdateData, userId: number) {
+function update( userId: number, updateData:ProfileUpdateData) {
     return prisma.profile.update({
         where:{
             userId
