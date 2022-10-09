@@ -63,8 +63,13 @@ async function login(userData:UserLoginData) {
 
 async function getUserData(userId: number) {
     const user = await userRepository.getUser(userId);
-
-    return user;
+    const formatedUser = {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        profileImage: user.profile[0].profilePicture
+    }
+    return formatedUser;
 }
 
 export const userService = {
