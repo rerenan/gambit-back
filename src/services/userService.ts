@@ -61,7 +61,14 @@ async function login(userData:UserLoginData) {
     return {token};
 }
 
+async function getUserData(userId: number) {
+    const user = await userRepository.getUser(userId);
+
+    return user;
+}
+
 export const userService = {
     register,
-    login
+    login,
+    getUserData
 }

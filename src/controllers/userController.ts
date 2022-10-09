@@ -28,3 +28,10 @@ export async function registerUser(req: Request, res: Response) {
 
     res.status(201).send(createdUser);
 }
+
+export async function getUserData(req: Request, res: Response) {
+    const {id: userId} = res.locals.user;
+    const user = await userService.getUserData(userId)
+
+    res.status(200).send(user)
+}

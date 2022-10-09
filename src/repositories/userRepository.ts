@@ -14,35 +14,53 @@ function insert(userData: UserInsertData) {
 };
 
 function findByEmail(email: string) {
-    const result = prisma.user.findUnique({
+    return prisma.user.findUnique({
         where: {
             email
         }
     });
-    return result;
 }
 
 function findByUserName(username: string) {
-    const result = prisma.user.findUnique({
+    return prisma.user.findUnique({
         where: {
             username
         }
     });
-    return result;
 }
 
 function findById(id: number) {
-    const result = prisma.user.findUnique({
+    return prisma.user.findUnique({
         where: {
             id
         }
     });
-    return result;
+}
+
+function getUser(id: number) {
+    return prisma.user.findUnique({
+        where: {
+            id
+        },
+        select:{
+            id: true,
+            username: true,
+            email: true,
+            profile: {
+                select:{
+                    banner: true,
+                    biography: true,
+                    profilePicture: true
+                }
+            }
+        }
+    });
 }
 
 export const userRepository = {
     insert,
     findByEmail,
     findByUserName,
-    findById
+    findById,
+    getUser
 }
