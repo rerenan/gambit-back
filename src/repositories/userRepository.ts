@@ -1,10 +1,10 @@
 import prisma from "../config/database";
 import { UserInsertData } from "../types/User";
 
-async function insert(userData: UserInsertData) {
+function insert(userData: UserInsertData) {
     const {username, email, password } = userData;
 
-    return await prisma.user.create({
+    return prisma.user.create({
         data: {
             username,
             email,
@@ -13,8 +13,8 @@ async function insert(userData: UserInsertData) {
     });
 };
 
-async function findByEmail(email: string) {
-    const result = await prisma.user.findUnique({
+function findByEmail(email: string) {
+    const result = prisma.user.findUnique({
         where: {
             email
         }
@@ -22,8 +22,8 @@ async function findByEmail(email: string) {
     return result;
 }
 
-async function findByUserName(username: string) {
-    const result = await prisma.user.findUnique({
+function findByUserName(username: string) {
+    const result = prisma.user.findUnique({
         where: {
             username
         }
@@ -31,8 +31,8 @@ async function findByUserName(username: string) {
     return result;
 }
 
-async function findById(id: number) {
-    const result = await prisma.user.findUnique({
+function findById(id: number) {
+    const result = prisma.user.findUnique({
         where: {
             id
         }

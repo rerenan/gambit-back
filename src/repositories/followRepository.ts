@@ -1,6 +1,6 @@
 import prisma from "../config/database";
 
-async function insert(followerId: number, followedId: number) {
+function insert(followerId: number, followedId: number) {
     return prisma.follow.create({
         data:{
             userIdFollower: followerId,
@@ -8,7 +8,7 @@ async function insert(followerId: number, followedId: number) {
         }
     })
 }
-async function remove(followerId: number, followedId: number) {
+function remove(followerId: number, followedId: number) {
     return prisma.follow.delete({
         where:{
             userIdFollowed_userIdFollower:{
@@ -18,7 +18,7 @@ async function remove(followerId: number, followedId: number) {
         }
     })
 }
-async function findByFollowerIdAndFollowedId(followerId: number, followedId: number) {
+function findByFollowerIdAndFollowedId(followerId: number, followedId: number) {
     return prisma.follow.findUnique({
         where:{
             userIdFollowed_userIdFollower:{

@@ -1,9 +1,9 @@
 import { PostInsertData } from './../types/Post';
 import prisma from "../config/database";
 
-async function insert(postData:PostInsertData) {
+function insert(postData:PostInsertData) {
     const {userId, text} = postData;
-    return await prisma.post.create({
+    return  prisma.post.create({
         data:{
             userId,
             text
@@ -11,8 +11,8 @@ async function insert(postData:PostInsertData) {
     })
 }
 
-async function getAll(postData:PostInsertData) {
-    return await prisma.post.findMany({})
+function getAll(postData:PostInsertData) {
+    return  prisma.post.findMany({})
 }
 
 export const postRepository = {
