@@ -1,9 +1,12 @@
 import { ProfileUpdateData } from './../types/Profile';
 import { profileRepository } from './../repositories/profileRepository';
+import { userRepository } from '../repositories/userRepository';
 
-async function getByUserId(userId:number) {
-    const profile = await profileRepository.getByUserId(userId);
-    if(!profile) throw {type:"notFound", message: "Profile not found"};
+async function getByUsername(username:string) {
+    const user = await userRepository.findByUserName(username);
+    if(!user) throw {type:"notFound", message: "User not found"};
+    const profile = await profileRepository.getByUserId(user.id);
+    delete profile.createdAt;
     return profile;
 }
 
@@ -13,12 +16,12 @@ async function update( postUserId:number, userId:number, updateData: ProfileUpda
     const profile = await profileRepository.getByUserId(userId);
     if(!profile) throw {type:"notFound", message: "Profile not found"};
 
-    const updatedProfile = await profileRepository.update(userId, updateData)
+    const updatedProfile = await profileRepository.update(userId, updateData);
     return updatedProfile;
 }
 
 
 export const profileService = {
-    getByUserId,
+    getByUsername,
     update
 }

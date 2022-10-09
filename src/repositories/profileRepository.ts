@@ -13,7 +13,8 @@ function getByUserId(userId: number){
     return prisma.profile.findUnique({
         where: {
             userId
-        }
+        },
+
     })
 }
 

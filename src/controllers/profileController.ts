@@ -2,9 +2,9 @@ import { profileService } from './../services/profileService';
 import { Request, Response } from "express";
 
 export async function getProfile(req: Request, res: Response) {
-    const {id:userId} = req.params;
+    const {username} = req.params;
     
-    const profile = await profileService.getByUserId(Number(userId));
+    const profile = await profileService.getByUsername(username);
     res.status(200).send(profile);
 }
 

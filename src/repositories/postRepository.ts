@@ -30,6 +30,7 @@ function get(userId: number) {
       ],
     },
     select: {
+      id: true,
       user: {
         select: {
           id: true,
