@@ -3,7 +3,7 @@ import { getProfile, updateProfile } from "../controllers/profileController";
 
 const profileRouter = Router();
 
-profileRouter.get("/:username", getProfile)
-profileRouter.put("/:username", updateProfile)
+profileRouter.get("/:id", getProfile)
+profileRouter.put("/:id", updateProfile)
 
 export default profileRouter;
