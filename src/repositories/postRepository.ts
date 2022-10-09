@@ -11,11 +11,35 @@ function insert(postData:PostInsertData) {
     })
 }
 
-function getAll(postData:PostInsertData) {
-    return  prisma.post.findMany({})
+function get(userId:number) {
+    return prisma.post.findMany({
+        where:{
+            user: {
+                followers:{
+                    some:{
+                        userIdFollower: userId
+                    }
+                }
+            }
+        },
+        select:{
+            user:{
+                select: {
+                    id: true,
+                    username: true,
+                    profile: {
+                        select:{
+                            profilePicture: true
+                        }
+                    }
+                }
+            },
+            text: true
+        }
+    })
 }
 
 export const postRepository = {
     insert,
-    getAll
+    get
 }

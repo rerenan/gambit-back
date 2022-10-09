@@ -3,8 +3,8 @@ import { followRepository } from "../repositories/followRepository"
 
 
 async function follow(followerId: number, followedId: number) {
-    const followerUser = await userRepository.findById(followedId);
-    const followedUser = await userRepository.findById(followerId);
+    const followerUser = await userRepository.findById(followerId);
+    const followedUser = await userRepository.findById(followedId);
 
     if(!followerUser || !followedUser) throw {type: "notFound", message: "Not found user(s)"}
 

@@ -17,8 +17,8 @@ model User {
   password              String
   profile               Profile[]
   posts                 Post[]
-  followers             Follow[]                @relation("followers")
   following             Follow[]                @relation("following")
+  followers             Follow[]                @relation("followers")
   createdAt             DateTime                  @default(now())
 
   @@map("users")
@@ -50,8 +50,8 @@ model Follow {
   id                    Int                       @id @default(autoincrement())
   userIdFollowed        Int                       
   userIdFollower        Int                         
-  userFollowed          User                      @relation(name: "following", fields: [userIdFollowed], references: [id])
-  userFollower          User                      @relation(name: "followers", fields: [userIdFollower], references: [id])
+  userFollowed          User                      @relation(name: "followers", fields: [userIdFollowed], references: [id])
+  userFollower          User                      @relation(name: "following", fields: [userIdFollower], references: [id])
   createdAt             DateTime                  @default(now())
 
   @@map("followers")

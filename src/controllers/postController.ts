@@ -9,6 +9,9 @@ export async function createPost(req: Request, res: Response) {
     res.status(200).send(postCreated);
 }
 
-export async function getAllPosts(req: Request, res: Response) {
-    res.sendStatus(200);
+export async function getPosts(req: Request, res: Response) {
+    const {id: userId} = res.locals.user;
+    const posts = await postService.get(userId);
+
+    res.status(200).send(posts);
 }

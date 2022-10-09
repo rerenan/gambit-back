@@ -9,6 +9,13 @@ async function create(postData:PostInsertData) {
     return postCreated;
 }
 
+async function get(userId:number) {
+    const posts = await postRepository.get(userId);
+
+    return posts;
+}
+
 export const postService = {
-    create
+    create,
+    get
 }
