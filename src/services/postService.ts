@@ -11,8 +11,15 @@ async function create(postData:PostInsertData) {
 
 async function get(userId:number) {
     const posts = await postRepository.get(userId);
-
-    return posts;
+    const formatedPosts = posts.map((post)=> {
+        return {
+            id: post.user.id,
+            username: post.user.username,
+            profileImage: post.user.profile[0].profilePicture,
+            text: post.text
+        }
+    })
+    return formatedPosts;
 }
 
 export const postService = {
