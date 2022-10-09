@@ -1,13 +1,22 @@
 import prisma from "../config/database";
 
 async function insert(userId:number) {
-    return await prisma.profile.create({
+    return prisma.profile.create({
         data:{
             userId
         }
     })
 }
 
+async function getByUserId(userId: number){
+    return prisma.profile.findUnique({
+        where: {
+            userId
+        }
+    })
+}
+
 export const profileRepository = {
-    insert
+    insert,
+    getByUserId
 }
