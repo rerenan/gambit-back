@@ -9,7 +9,8 @@ const router = Router();
 
 router.use("/user", userRouter)
 router.use("/posts", postRouter)
+router.use("/profile", profileRouter);
 router.use("/", tokenMiddleware, followRouter);
-router.use("/profile", tokenMiddleware, profileRouter)
+
 
 export default router;

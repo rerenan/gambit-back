@@ -15,3 +15,10 @@ export async function getPosts(req: Request, res: Response) {
 
     res.status(200).send(posts);
 }
+
+export async function getUserPosts(req: Request, res: Response) {
+    const {id: userId} = req.params;
+    
+
+    res.status(200).send();
+}
