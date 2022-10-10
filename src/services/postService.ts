@@ -23,7 +23,12 @@ async function get(userId:number) {
     return formatedPosts;
 }
 
+async function getByUser(userId: number) {
+    
+}
+
 export const postService = {
     create,
-    get
+    get,
+    getByUser
 }

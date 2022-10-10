@@ -50,7 +50,19 @@ function get(userId: number) {
   });
 }
 
+function getByUserId(userId: number){
+  return prisma.post.findMany({
+    where:{
+      userId
+    },
+    orderBy:{
+      id: "desc"
+    }
+  })
+}
+
 export const postRepository = {
   insert,
   get,
+  getByUserId
 };
