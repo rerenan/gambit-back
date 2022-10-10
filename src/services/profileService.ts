@@ -9,7 +9,7 @@ async function getByUsername(username:string) {
     delete profile.createdAt;
     const profileFormated = {
         ...profile,
-        followers: profile.user.followers
+        followers: profile.user.followers.map((follower)=> follower.userIdFollower)
     }
     delete profileFormated.user;
     return profileFormated;

@@ -1,10 +1,14 @@
 import prisma from "../config/database";
 import { ProfileUpdateData } from "../types/Profile";
 
+const defaultBanner = "https://funent.com/images/template/page-banner-default.jpg"
+
 function insert(userId: number) {
     return prisma.profile.create({
         data:{
-            userId
+            userId,
+            banner: defaultBanner
+
         }
     })
 }
