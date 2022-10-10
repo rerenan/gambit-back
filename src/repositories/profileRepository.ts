@@ -14,6 +14,17 @@ function getByUserId(userId: number){
         where: {
             userId
         },
+        include: {
+            user:{
+                select:{
+                    followers:{
+                        select:{
+                            userIdFollower: true
+                        }
+                    }
+                }
+            }
+        }
 
     })
 }

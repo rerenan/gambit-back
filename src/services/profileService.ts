@@ -7,7 +7,12 @@ async function getByUsername(username:string) {
     if(!user) throw {type:"notFound", message: "User not found"};
     const profile = await profileRepository.getByUserId(user.id);
     delete profile.createdAt;
-    return profile;
+    const profileFormated = {
+        ...profile,
+        followers: profile.user.followers
+    }
+    delete profileFormated.user;
+    return profileFormated;
 }
 
 async function update( postUserId:number, userId:number, updateData: ProfileUpdateData) {
