@@ -55,6 +55,21 @@ function getByUserId(userId: number){
     where:{
       userId
     },
+    select: {
+      id: true,
+      user: {
+        select: {
+          id: true,
+          username: true,
+          profile: {
+            select: {
+              profilePicture: true,
+            },
+          },
+        },
+      },
+      text: true,
+    },
     orderBy:{
       id: "desc"
     }

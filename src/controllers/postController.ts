@@ -18,7 +18,7 @@ export async function getPosts(req: Request, res: Response) {
 
 export async function getUserPosts(req: Request, res: Response) {
     const {id: userId} = req.params;
-    
+    const posts = await postService.getByUser(Number(userId))
 
-    res.status(200).send();
+    res.status(200).send(posts);
 }
